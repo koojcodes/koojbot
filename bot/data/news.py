@@ -102,6 +102,19 @@ def _freshness_label(published_at: datetime | None) -> str:
         return "[RECENT]"
 
 
+def _is_llm_billing_error(exc: Exception) -> bool:
+    text = str(exc).lower()
+    return any(
+        token in text
+        for token in (
+            "credit balance",
+            "credit_balance_exhausted",
+            "insufficient_quota",
+            "plans & billing",
+        )
+    )
+
+
 class NewsCollector:
     """Collects news and uses Claude to analyze probability impact on markets."""
 
@@ -112,6 +125,7 @@ class NewsCollector:
         self.anthropic_key = anthropic_key or settings.ANTHROPIC_API_KEY
         self._client = httpx.AsyncClient(timeout=30.0)
         self._claude = None
+        self._llm_disabled_reason = ""
         if self.anthropic_key:
             self._claude = anthropic.AsyncAnthropic(api_key=self.anthropic_key)
         # Cache: market_id -> (cached_at, NewsAnalysis)
@@ -217,8 +231,7 @@ class NewsCollector:
             log.info(f"[dim]Using cached news analysis for: {market_title[:50]}[/]")
             return cached
 
-        if not self._claude:
-            log.warning("Claude API not configured. Skipping news analysis.")
+        if self._llm_disabled_reason or not self._claude:
             return None
 
         # Fetch news if not provided
@@ -311,6 +324,14 @@ REASONING: <1-2 sentences>"""
             return analysis
 
         except Exception as e:
+            if _is_llm_billing_error(e):
+                self._llm_disabled_reason = "llm_credits_exhausted"
+                self._claude = None
+                log.warning(
+                    "News analysis disabled for this process: the LLM account has no credits. "
+                    "The BTC day-trader loop continues without it."
+                )
+                return None
             log.error(f"Claude analysis failed: {e}")
             return None
 

@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  /* UI/UX Pro Max — Financial Dashboard palette */
+  --background: #020617;       /* true dark background */
+  --surface: #0f172a;          /* primary surface */
+  --foreground: #f8fafc;       /* primary text */
+  --card: #1e293b;             /* card/panel */
+  --card-border: #334155;      /* visible borders */
+  --accent: #22c55e;           /* bullish green */
+  --accent-red: #ef4444;       /* bearish red */
+  --accent-amber: #f59e0b;     /* warning / neutral */
+  --accent-blue: #0ea5e9;      /* info / data */
+  --muted: #94a3b8;            /* secondary text */
+  --muted-dark: #475569;       /* dividers */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-yellow: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* Tabular figures for all monospace numbers — prevents layout shift */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,11 @@
+{
+  "simulation_id": "sim_16f1d87868c8",
+  "status": "completed",
+  "pid": 4233,
+  "start_time": 1775370003.718675,
+  "end_time": 1775370036.340723,
+  "current_round": 3,
+  "max_rounds": 0,
+  "total_actions": 13,
+  "error": ""
+}

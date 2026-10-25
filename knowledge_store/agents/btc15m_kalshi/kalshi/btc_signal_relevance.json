@@ -1,0 +1,37 @@
+{
+  "category": "btc_signal_relevance",
+  "version": 1,
+  "last_updated": "2026-07-22T01:11:14.766844+00:00",
+  "summary": "No knowledge accumulated yet for Which BTC price signals (momentum, RSI, volume, news, funding rate) actually have predictive power for 15-minute binary outcomes on Kalshi. Focuses on signal reliability, lead time relative to the contract window, and noise filters..",
+  "consolidated_rules": [
+    {
+      "id": "rule_001",
+      "rule": "News sentiment alone (positive/negative binary classification) is insufficient for predicting 15-minute BTC price direction because price reaction depends on news quality relative to market expectations, not absolute sentiment",
+      "asset": "BTC",
+      "timeframe": "15m",
+      "confidence": 0.75,
+      "confirmed_by": 1,
+      "status": "tentative",
+      "notes": "Comments explicitly state good news can drive price down if not as good as expected, and bad news can drive price up if better than feared. This expectation-vs-reality dynamic applies to BTC news events (regulatory announcements, adoption news, etc.) and invalidates simple sentiment-based signals for binary contracts."
+    },
+    {
+      "id": "rule_002",
+      "rule": "Price reaction to BTC news depends on surprise factor (actual vs expected), not news directionality\u2014positive news below expectations can be bearish for 15-minute contracts",
+      "asset": "BTC",
+      "timeframe": "15m",
+      "confidence": 0.72,
+      "confirmed_by": 1,
+      "status": "tentative",
+      "notes": "Directly applicable from comment: 'Good news, if not as good as some people thought it would be can take price down. And bad news if better than they thought can bring price up.' This means simple news sentiment models will mispredict BTC contract outcomes when market expectations were incorrectly calibrated."
+    }
+  ],
+  "open_contradictions": [],
+  "source_videos": [
+    {
+      "url": "https://www.reddit.com/r/algotrading/comments/1kq64qd/algo_strategy_simplicity_is_paramount/",
+      "title": "algo strategy - simplicity is paramount",
+      "channel": "r/algotrading",
+      "processed_at": "2026-07-22T01:11:14.764167+00:00"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "category": "edge_identification",
+  "version": 1,
+  "last_updated": "2026-07-22T01:11:14.770104+00:00",
+  "summary": "No knowledge accumulated yet for Frameworks for finding genuine positive expected value in Kalshi BTC markets: minimum probability delta after fees, conditions that reliably create edge, when NOT to bet, edge decay as contract nears expiry, and avoiding false signals..",
+  "consolidated_rules": [
+    {
+      "id": "rule_001",
+      "rule": "Strategies based on publicly available, easily parseable information (news sentiment, scheduled announcements) likely have no edge due to market saturation\u2014requires private data advantage or superior interpretation speed",
+      "asset": "general",
+      "timeframe": "general",
+      "confidence": 0.8,
+      "confirmed_by": 1,
+      "status": "tentative",
+      "notes": "Comment states 'number of people already doing it is huge, it does not provide edge anymore' regarding financial results analysis. This principle applies directly to Kalshi BTC markets where news-scraping bots are common and contract prices adjust within seconds of major BTC news."
+    },
+    {
+      "id": "rule_002",
+      "rule": "Do NOT build strategies around instant news reaction trades unless execution speed is measurably faster than market (sub-second latency)\u2014informational edge disappears once news is public",
+      "asset": "BTC",
+      "timeframe": "15m",
+      "confidence": 0.78,
+      "confirmed_by": 1,
+      "status": "tentative",
+      "notes": "The proposed strategy of instant financial analysis and buying is criticized as having no edge. For Kalshi BTC contracts, major BTC news (ETF announcements, Fed decisions affecting crypto) gets priced into YES/NO probabilities almost instantly by sophisticated participants and market makers."
+    },
+    {
+      "id": "rule_003",
+      "rule": "Avoid strategies that rely on being 'first to analyze' public information\u2014edge requires either proprietary data interpretation, execution speed advantage, or contrarian positioning against crowd misinterpretation",
+      "asset": "general",
+      "timeframe": "general",
+      "confidence": 0.77,
+      "confirmed_by": 1,
+      "status": "tentative",
+      "notes": "The fundamental criticism is that instant analysis of public financial data provides no edge because many participants do the same thing. For Kalshi BTC, this means strategies must exploit crowd pricing biases or superior signal interpretation, not speed of reacting to public news."
+    }
+  ],
+  "open_contradictions": [],
+  "source_videos": [
+    {
+      "url": "https://www.reddit.com/r/algotrading/comments/1kq64qd/algo_strategy_simplicity_is_paramount/",
+      "title": "algo strategy - simplicity is paramount",
+      "channel": "r/algotrading",
+      "processed_at": "2026-07-22T01:11:14.764167+00:00"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+
+# Environment
+.env
+*.env.local
+
+# Database
+*.db
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Next.js
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+
+# Logs
+*.log
+logs/
+
+# Claude
+.claude/
+
+# Keys/secrets
+keys/
