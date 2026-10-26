@@ -258,6 +258,24 @@ async def run_bot(args):
         log.info("[bold]Telegram bot starting...[/]")
         tasks.append(tg.run())
 
+    # NFL swing trading engine
+    if args.nfl:
+        from bot.nfl.engine import NFLSwingEngine
+        poly_exchange = exchange_map.get("polymarket") or primary
+        game_ids = [g.strip() for g in args.nfl_games.split(",") if g.strip()] or None
+        nfl_engine = NFLSwingEngine(
+            exchange=poly_exchange,
+            risk=risk,
+            game_ids=game_ids,
+        )
+        if args.telegram:
+            from bot.nfl.telegram import NFLTelegramHandler
+            nfl_tg = NFLTelegramHandler(nfl_engine)
+            nfl_engine.on_trade(nfl_tg.on_trade_alert)
+            # nfl_tg.register(tg.app) would wire commands if tg bot is available
+        log.info("[bold cyan]NFL Swing Engine[/] enabled")
+        tasks.append(nfl_engine.run())
+
     tasks.append(engine.start())
 
     await asyncio.gather(*tasks)
@@ -333,6 +351,16 @@ def main():
         "--day-trader",
         action="store_true",
         help="Enable the day trader pipeline (BTC 15-min + other configured markets)",
+    )
+    parser.add_argument(
+        "--nfl",
+        action="store_true",
+        help="Enable the NFL swing trading momentum bot",
+    )
+    parser.add_argument(
+        "--nfl-games",
+        default="",
+        help="Comma-separated ESPN game IDs to track (default: all live games)",
     )
 
     args = parser.parse_args()

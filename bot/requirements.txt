@@ -17,3 +17,4 @@ youtube-transcript-api>=1.2.4
 youtube-search-python>=1.6.6
 openai>=1.0.0
 zep-cloud>=3.13.0
+thefuzz>=0.22.0
